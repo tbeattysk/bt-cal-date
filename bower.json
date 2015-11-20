@@ -1,0 +1,29 @@
+{
+  "name": "bt-cal-date",
+  "version": "0.0.1",
+  "authors": [
+    "Tyler Beatty <tbeatty.sk@gmail.com>"
+  ],
+  "keywords": [
+    "web-component",
+    "web-components",
+    "polymer",
+    "calendar"
+  ],
+  "description": "Web component calendar for interactive dates.",
+  "main": "bt-cal-date.html",
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "ignore": [
+    "/.*",
+    "/test/",
+    "/demo/"
+  ],
+  "dependencies":{
+    "polymer": "polymer/polymer#^1.0.0",
+    "paper-material": "PolymerElements/paper-material"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "web-component-tester": "*"
+  }
+}
