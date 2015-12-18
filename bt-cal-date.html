@@ -15,29 +15,40 @@ An element providing a solution to no problem in particular.
 Example:
 
     <seed-element></seed-element>
-change
+
 @demo
 -->
 <dom-module id="bt-cal-date">
-  <style>
+  <style is="custom-style">
+    body {
+     
+    }
     :host{
       width: 100px;
       height: 100px;
+      margin-left: 5px;
     }
     paper-material{
+      background-color: rgb(216,216,216);
       width:100px;
       height: 100px;
+    }
+    paper-material:hover{
+      @apply(--shadow-elevation-16dp);
+      z-index: 2;
+      cursor: default;
     }
     ::content h1{
       font-size: 24px;
       text-align: right;
       padding-right: 5px;
-        margin-top: 5px;
+      margin-top: 5px;
       margin-bottom: 0;
       color:#000000;
     }
     ::content h2{
-      font-size: 18px;
+      font-size: 14px;
+      text-align: left;
       margin-right: 5px;
       margin-top: 0px;
       margin-bottom: 5px;
@@ -55,7 +66,7 @@ change
     }
   </style>
   <template>
-    <paper-material elevation="1">
+    <paper-material animated=true id="date" elevation="1">
       <div id="dates"><content select = "h1"></content></div>
       <content select="h2"></content>
       <content select="div"></content>
@@ -66,12 +77,20 @@ change
 <script>
   Polymer({
     is:'bt-cal-date',
-    properties:{
+    
+
+    properties: {      
       color: {
         type: String,
         notify: true,
         observer: '_colorChange',
       }
+    },
+    listeners:{
+      click:'_onClick'
+    },
+    _onClick:function(){
+      this.fire("dateselected")
     },
     _colorChange: function(){
       this.color = this.color || "white";
