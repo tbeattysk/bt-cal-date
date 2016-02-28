@@ -29,7 +29,7 @@ Example:
       margin-left: 5px;
     }
     paper-material{
-      background-color: rgb(216,216,216);
+      background-color: #B0BEC5;
       width: 12vw;
       height: 12vh;
     }
@@ -67,9 +67,12 @@ Example:
   </style>
   <template>
     <paper-material animated=true id="date" elevation="1">
-      <div id="dates"><content select = "h1"></content></div>
-      <content select="h2"></content>
-      <content select="div"></content>
+      <h1>{{data.day}}</h1>
+      <ul>
+        <template is="dom-repeat" items="[[data.events]]" as="event">
+          <li> {{event.title}} </li>
+        </template>
+      </ul>
     </paper-material>
   </template>
 </dom-module>
@@ -77,25 +80,31 @@ Example:
 <script>
   Polymer({
     is:'bt-cal-date',
-    
-
-    properties: {      
-      color: {
-        type: String,
+  
+    properties: {
+      data: {
+        type: Object,
         notify: true,
         observer: '_colorChange',
-      }
+        reflectToAttribute: true
+      } 
     },
     listeners:{
       click:'_onClick'
+    },
+    ready:function(){
     },
     _onClick:function(){
       this.fire("dateselected")
     },
     _colorChange: function(){
-      this.color = this.color || "white";
-      this.$.dates.style.backgroundColor= this.color;
-          this.updateStyles();
+      if(this.data.offMonth){
+        this.$.date.style.opacity = 0.5;
+      }else{this.$.date.style.opacity = 1;}
+      if(this.data.today){
+        this.$.date.style.backgroundColor = "#3F51B5"
+      }else{this.$.date.style.backgroundColor = "#B0BEC5"}
+
     },
   });
 </script>
